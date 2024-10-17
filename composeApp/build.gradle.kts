@@ -1,5 +1,7 @@
+import com.codingfeline.buildkonfig.compiler.FieldSpec.Type
 import org.jetbrains.kotlin.gradle.ExperimentalKotlinGradlePluginApi
 import org.jetbrains.kotlin.gradle.dsl.JvmTarget
+import java.util.Properties
 
 plugins {
     alias(libs.plugins.kotlinMultiplatform)
@@ -8,7 +10,10 @@ plugins {
     alias(libs.plugins.compose.compiler)
     alias(libs.plugins.kotlinxSerialization)
     alias(libs.plugins.realm.plugin)
+    alias(libs.plugins.build.konfig)
 }
+
+val appPackageName = "com.hoavu.currencyapp"
 
 kotlin {
     androidTarget {
@@ -77,11 +82,11 @@ kotlin {
 }
 
 android {
-    namespace = "com.hoavu.currencyapp"
+    namespace = appPackageName
     compileSdk = libs.versions.android.compileSdk.get().toInt()
 
     defaultConfig {
-        applicationId = "com.hoavu.currencyapp"
+        applicationId = appPackageName
         minSdk = libs.versions.android.minSdk.get().toInt()
         targetSdk = libs.versions.android.targetSdk.get().toInt()
         versionCode = 1
@@ -107,3 +112,35 @@ dependencies {
     debugImplementation(compose.uiTooling)
 }
 
+buildkonfig {
+    packageName = appPackageName
+
+    val keyProperties = loadPropertiesFile("key.properties")
+
+    val baseUrl: String = keyProperties.getProperty("base_url_api")
+    val apiKey: String = keyProperties.getProperty("base_api_key")
+
+    defaultConfigs {
+        buildConfigField(
+            Type.STRING,
+            "BASE_URL_BACKEND",
+            baseUrl
+        )
+        buildConfigField(
+            Type.STRING,
+            "BASE_API_KEY",
+            apiKey
+        )
+    }
+}
+
+fun loadPropertiesFile(fileName: String): Properties {
+    val properties = Properties()
+    val file = rootProject.file(fileName)
+
+    if (file.exists()) {
+        properties.load(file.inputStream())
+    } else throw GradleException("Properties file $fileName not found.")
+
+    return properties
+}

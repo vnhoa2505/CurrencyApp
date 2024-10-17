@@ -1,5 +1,6 @@
 package com.hoavu.currencyapp.data.remote.api
 
+import com.hoavu.currencyapp.BuildKonfig
 import com.hoavu.currencyapp.domain.CurrencyApiService
 import com.hoavu.currencyapp.domain.PreferencesRepository
 import com.hoavu.currencyapp.domain.model.ApiResponse
@@ -20,8 +21,8 @@ class CurrencyApiServiceImpl(
     private val preference: PreferencesRepository
 ) : CurrencyApiService {
     companion object {
-        const val ENDPOINT = "https://api.currencyapi.com/v3/latest"
-        const val API_KEY = "cur_live_b50fYqnMU5upF4BsaRx29QCX34pZ1UUwseyLc880"
+        val ENDPOINT = BuildKonfig.BASE_URL_BACKEND
+        val API_KEY = BuildKonfig.BASE_API_KEY
     }
 
     private val httpClient = HttpClient {
