@@ -18,3 +18,4 @@ captures
 *.jks
 local.properties
 keystore.properties
+key.properties

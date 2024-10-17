@@ -18,7 +18,6 @@ import com.hoavu.currencyapp.presentation.component.CurrencyPickerDialog
 import com.hoavu.currencyapp.presentation.modules.HomeBody
 import com.hoavu.currencyapp.presentation.modules.HomeHeader
 import com.hoavu.currencyapp.ui.theme.surfaceColor
-import io.github.aakira.napier.Napier
 
 class HomeScreen : Screen {
     @Composable
@@ -41,8 +40,6 @@ class HomeScreen : Screen {
 
         LaunchedEffect(amountText) {
             amountNumber = amountText.toDoubleOrNull() ?: 0.0
-            Napier.d { "amountText => $amountText" }
-            Napier.d { "amountNumber => ${amountText.toDoubleOrNull()}" }
         }
 
         if (dialogOpened && selectedCurrencyType != CurrencyType.None) {
