@@ -1,0 +1,19 @@
+<resources>
+    <string name="convert">Convert</string>
+    <string name="amount_input_placeholder">0.0</string>
+    <string name="from">From</string>
+    <string name="to">To</string>
+    <string name="select_a_currency">Select a currency</string>
+    <string name="search_here">Search here...</string>
+    <string name="cancel">Cancel</string>
+    <string name="confirm">Confirm</string>
+    <string name="no_data">No Data.</string>
+
+    <!--    Content Description    -->
+    <string name="currency_flag">Currency Flag</string>
+    <string name="country_flag">Country Flag</string>
+    <string name="checkmark_icon">Checkmark Icon</string>
+    <string name="switch_icon">Switch Icon</string>
+    <string name="exchange_rate_illustration">Exchange Rate Illustration</string>
+    <string name="refresh_icon">Refresh Icon</string>
+</resources>
